@@ -1,4 +1,4 @@
-package rest.primes;
+package rest.primes.core;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static rest.primes.PrimeGenerator.primes;
+import static rest.primes.core.PrimeGenerator.primes;
 
 public class PrimeGeneratorTest {
     @Test

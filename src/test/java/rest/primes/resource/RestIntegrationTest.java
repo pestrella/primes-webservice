@@ -1,10 +1,11 @@
-package rest.primes;
+package rest.primes.resource;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import rest.primes.Application;
 import rest.primes.model.PrimesResponse;
 
 import static java.util.Arrays.asList;

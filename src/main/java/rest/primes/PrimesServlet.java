@@ -1,5 +1,7 @@
 package rest.primes;
 
+import rest.primes.core.PrimeGenerator;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

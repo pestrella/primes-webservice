@@ -1,4 +1,4 @@
-package rest.primes;
+package rest.primes.core;
 
 import java.util.ArrayList;
 import java.util.List;

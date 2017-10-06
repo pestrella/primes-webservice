@@ -3,6 +3,7 @@ package rest.primes;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import rest.primes.resource.PrimesResource;
 
 import static com.google.inject.Scopes.SINGLETON;
 

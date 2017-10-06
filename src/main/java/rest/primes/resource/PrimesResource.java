@@ -1,5 +1,6 @@
-package rest.primes;
+package rest.primes.resource;
 
+import rest.primes.core.PrimeGenerator;
 import rest.primes.model.PrimesResponse;
 
 import javax.ws.rs.GET;
