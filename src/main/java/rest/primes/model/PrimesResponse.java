@@ -1,17 +1,18 @@
 package rest.primes.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class PrimesResponse {
-    @JsonProperty("Initial")
     public final Integer initial;
-
-    @JsonProperty("Primes")
     public final List<Integer> primes;
 
-    public PrimesResponse(Integer initial, List<Integer> primes) {
+    @JsonCreator
+    public PrimesResponse(
+            @JsonProperty("Initial") Integer initial,
+            @JsonProperty("Primes") List<Integer> primes) {
         this.initial = initial;
         this.primes = primes;
     }
