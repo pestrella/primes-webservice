@@ -16,7 +16,7 @@ public class Application {
         Injector injector = Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
-                install(new PrimesModule());
+                install(new AppModule());
                 bind(GuiceFilter.class);
             }
         });
