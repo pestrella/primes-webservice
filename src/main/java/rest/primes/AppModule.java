@@ -7,7 +7,10 @@ import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import rest.primes.core.PrimesService;
+import rest.primes.core.SimpleCache;
 import rest.primes.resource.PrimesResource;
+
+import java.util.List;
 
 import static com.google.inject.Scopes.SINGLETON;
 
@@ -28,7 +31,14 @@ public class AppModule extends ServletModule {
 
     @Provides
     @Singleton
-    PrimesService providePrimesService() {
-        return new PrimesService();
+    PrimesService providePrimesService(SimpleCache<Integer, List<Integer>> cache) {
+        PrimesService service = new PrimesService();
+        service.setCache(cache);
+        return service;
+    }
+
+    @Provides
+    SimpleCache<Integer, List<Integer>> providePrimesCache() {
+        return new SimpleCache<>(100);
     }
 }
