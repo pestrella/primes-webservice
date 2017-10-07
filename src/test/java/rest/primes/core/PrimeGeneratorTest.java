@@ -2,11 +2,15 @@ package rest.primes.core;
 
 import org.junit.Test;
 
+import java.util.List;
+
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static rest.primes.core.PrimeGenerator.primes;
+import static rest.primes.core.PrimeGenerator.primesParallel;
 
 public class PrimeGeneratorTest {
     @Test
@@ -29,5 +33,16 @@ public class PrimeGeneratorTest {
         assertThat(primes(0), is(EMPTY_LIST));
         assertThat(primes(1), is(EMPTY_LIST));
         assertThat(primes(2), is(asList(2)));
+    }
+
+    @Test
+    public void testPrimesParallel() {
+        int n = 200000;
+
+        long start = System.currentTimeMillis();
+        List<Integer> primes = primesParallel(n);
+        System.out.println(format("found %,d primes < %,d; elapsed time: %,d ms", primes.size(), n, System.currentTimeMillis() - start));
+
+        assertThat(primes(n), is(primesParallel(n)));
     }
 }
