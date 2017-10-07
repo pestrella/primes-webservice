@@ -13,14 +13,13 @@ import java.util.EnumSet;
 
 public class Application {
     public static void main(String[] args) throws Exception {
-        Injector injector = Guice.createInjector(
-                new PrimesModule(),
-                new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        bind(GuiceFilter.class);
-                    }
-                });
+        Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                install(new PrimesModule());
+                bind(GuiceFilter.class);
+            }
+        });
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.setContextPath("/");
