@@ -19,6 +19,11 @@ public class PrimeGeneratorTest {
     }
 
     @Test
+    public void testInclusive() {
+        assertThat(primes(7), is(asList(2, 3, 5, 7)));
+    }
+
+    @Test
     public void testEdgeCases() {
         assertThat(primes(-1), is(EMPTY_LIST));
         assertThat(primes(0), is(EMPTY_LIST));

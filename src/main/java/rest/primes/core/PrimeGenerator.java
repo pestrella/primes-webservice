@@ -17,13 +17,15 @@ public class PrimeGenerator {
         }
 
         for (int i : seq(3, n, 2)) {
-            if (isPrime(i)) {
+            if (isPrime.apply(i)) {
                 primes.add(i);
             }
         }
 
         return primes;
     }
+
+    private static Memoize<Integer, Boolean> isPrime = new Memoize<>(k -> isPrime(k));
 
     private static boolean isPrime(int n) {
         if (n < 2) {
