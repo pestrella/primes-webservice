@@ -37,7 +37,7 @@ public class PrimeGeneratorTest {
 
     @Test
     public void testPrimesParallel() {
-        int n = 200000;
+        int n = 500000;
 
         long start = System.currentTimeMillis();
         List<Integer> primes = primesParallel(n);

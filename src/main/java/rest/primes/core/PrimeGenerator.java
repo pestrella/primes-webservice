@@ -41,7 +41,7 @@ public class PrimeGenerator {
         ArrayList<Integer> primeCandidates = seq(3, n, 2);
         primeCandidates.add(0, 2);
 
-        return partition(primeCandidates, 200000).parallelStream()
+        return partition(primeCandidates, 10000).parallelStream()
                 .map(pc -> pc.stream()
                         .filter(isPrime::apply)
                         .collect(toList()))
