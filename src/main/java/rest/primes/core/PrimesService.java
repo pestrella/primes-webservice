@@ -6,19 +6,26 @@ import com.google.common.cache.LoadingCache;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class PrimesService {
-    private LoadingCache<Integer, List<Integer>> primes;
+    private final LoadingCache<Integer, List<Integer>> primes;
 
     public PrimesService() {
+        this(false);
+    }
+
+    public PrimesService(boolean doParallel) {
+        Function<Integer, List<Integer>> primesFunction = doParallel
+                ? PrimeGenerator::primesParallel
+                : PrimeGenerator::primes;
+
         primes = CacheBuilder.newBuilder()
                 .maximumSize(100)
-                .expireAfterAccess(10, TimeUnit.MINUTES)
                 .build(new CacheLoader<Integer, List<Integer>>() {
                     @Override
                     public List<Integer> load(Integer n) throws Exception {
-                        return PrimeGenerator.primes(n);
+                        return primesFunction.apply(n);
                     }
                 });
     }

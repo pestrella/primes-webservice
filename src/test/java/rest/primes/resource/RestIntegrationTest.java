@@ -10,6 +10,7 @@ import rest.primes.model.PrimesResponse;
 
 import javax.ws.rs.core.MediaType;
 
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -40,5 +41,15 @@ public class RestIntegrationTest {
         WebResource resource = client.resource(HOST + "/primes/10");
         PrimesResponse response = resource.accept(MediaType.APPLICATION_XML).get(PrimesResponse.class);
         assertThat(response.getPrimes(), is(asList(2, 3, 5, 7)));
+    }
+
+    @Test
+    public void testParallelPrimes() {
+        int n = 200000;
+        long start = System.currentTimeMillis();
+        WebResource resource = client.resource(HOST + format("/primes/%s?parallel=true", n));
+        PrimesResponse response = resource.get(PrimesResponse.class);
+        System.out.println(format("found %,d primes < %,d, in %,d ms",
+                response.getPrimes().size(), n, System.currentTimeMillis() - start));
     }
 }
